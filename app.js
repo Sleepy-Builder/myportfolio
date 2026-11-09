@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Andrew G. Palaran — Portfolio State, Certificates Vault & Motion Engine
+   Andrew G. Palaran \u2014 Portfolio State, Certificates Vault & Motion Engine
    ========================================================================== */
 
 (() => {
@@ -15,31 +15,31 @@
     phone: '+63 905 736 1525',
     facebook: 'https://www.facebook.com/andrew.palaran.5',
     github: 'https://github.com/djakshkasj',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/andrew-palaran-30b18844a',
     projects: [
       {
         title: 'WaterWatch | GIS Water Monitoring & Forecasting',
         description: 'Web-based project combining GIS mapping, real-time water monitoring, and predictive forecasting. Served as Project Manager leading system planning and delivery.',
-        tag: 'GIS · Water Monitoring · Forecasting · Project Manager',
+        tag: 'GIS \u00B7 Water Monitoring \u00B7 Forecasting \u00B7 Project Manager',
         url: 'https://waterwatch.tortor.org'
       },
       {
         title: 'Uncle Brew | Sample Coffee Shop Website',
         description: 'Created a sample coffee-shop website featuring an interactive drinks menu, branch listings, and franchising content.',
-        tag: 'Web Development · Brand UI · Franchising',
+        tag: 'Web Development \u00B7 Brand UI \u00B7 Franchising',
         url: 'https://djakshkasj.github.io/unclebrew-website/'
       },
       {
         title: 'E-Commerce, Franchising & Inventory',
         description: 'Experience in online selling and digital product sales, paired with hands-on experience in franchising and inventory management.',
-        tag: 'E-Commerce · Digital Sales · Franchising · Inventory',
+        tag: 'E-Commerce \u00B7 Digital Sales \u00B7 Franchising \u00B7 Inventory',
         url: ''
       }
     ],
     certificates: [
       {
         title: 'Google AI Essentials (5-Course Specialization)',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-ai.png',
@@ -48,7 +48,7 @@
       },
       {
         title: 'Introduction to Web Development with HTML, CSS, JavaScript',
-        issuer: 'IBM · Coursera',
+        issuer: 'IBM \u00B7 Coursera',
         date: 'Apr 1, 2026',
         category: 'technical',
         image: 'assets/cert-ibm-web.png',
@@ -57,7 +57,7 @@
       },
       {
         title: 'The Arduino Platform and C Programming',
-        issuer: 'University of California, Irvine (UC Irvine) · Coursera',
+        issuer: 'University of California, Irvine (UC Irvine) \u00B7 Coursera',
         date: 'Mar 16, 2026',
         category: 'technical',
         image: 'assets/cert-uci-arduino.png',
@@ -66,7 +66,7 @@
       },
       {
         title: 'Introduction to AI',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-intro-ai.png',
@@ -75,7 +75,7 @@
       },
       {
         title: 'Maximize Productivity With AI Tools',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-productivity.png',
@@ -84,7 +84,7 @@
       },
       {
         title: 'Discover the Art of Prompting',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-prompting.png',
@@ -93,7 +93,7 @@
       },
       {
         title: 'Use AI Responsibly',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-responsible-ai.png',
@@ -102,7 +102,7 @@
       },
       {
         title: 'Stay Ahead of the AI Curve',
-        issuer: 'Google · Coursera',
+        issuer: 'Google \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'ai',
         image: 'assets/cert-google-ai-curve.png',
@@ -111,7 +111,7 @@
       },
       {
         title: 'Data Analytics Foundations: Turn Data into Insights',
-        issuer: 'IBM · Coursera',
+        issuer: 'IBM \u00B7 Coursera',
         date: 'Apr 8, 2026',
         category: 'technical',
         image: 'assets/cert-ibm-data-analytics.png',
@@ -120,7 +120,7 @@
       },
       {
         title: 'Introduction to IT Security',
-        issuer: 'Akamai Technologies, Inc. · Coursera',
+        issuer: 'Akamai Technologies, Inc. \u00B7 Coursera',
         date: 'Apr 23, 2026',
         category: 'technical',
         image: 'assets/cert-akamai-security.png',
@@ -129,53 +129,17 @@
       },
       {
         title: 'Guided Website Development Project',
-        issuer: 'University of Washington · Coursera',
+        issuer: 'University of Washington \u00B7 Coursera',
         date: 'May 7, 2026',
         category: 'technical',
         image: 'assets/cert-uw-web-project.png',
         pdf: 'assets/cert-uw-web-project.pdf',
         verifyUrl: 'https://coursera.org/verify/C53M79XNXGFQ'
-      },
-      {
-        title: 'Certificate Slot 12 — Academic Honors (GWA 1.403)',
-        issuer: 'Southern Leyte State University — BSIT',
-        date: '2026',
-        category: 'technical',
-        image: '',
-        pdf: '',
-        verifyUrl: ''
-      },
-      {
-        title: 'Certificate Slot 13 — Future Credential',
-        issuer: 'Add Issuing Organization / Platform',
-        date: '2026',
-        category: 'technical',
-        image: '',
-        pdf: '',
-        verifyUrl: ''
-      },
-      {
-        title: 'Certificate Slot 14 — Future Credential',
-        issuer: 'Add Issuing Organization / Platform',
-        date: '2026',
-        category: 'technical',
-        image: '',
-        pdf: '',
-        verifyUrl: ''
-      },
-      {
-        title: 'Certificate Slot 15 — Future Credential',
-        issuer: 'Add Issuing Organization / Platform',
-        date: '2026',
-        category: 'technical',
-        image: '',
-        pdf: '',
-        verifyUrl: ''
       }
     ]
   };
 
-  const storageKey = 'andrew-editorial-portfolio-v8';
+  const storageKey = 'andrew-editorial-portfolio-v10';
   const copy = v => JSON.parse(JSON.stringify(v));
 
   function normalize(value) {
@@ -193,15 +157,20 @@
       });
     }
     if (Array.isArray(value.certificates)) {
-      result.certificates = result.certificates.map((c, i) => {
-        for (const k of ['title', 'issuer', 'date', 'category', 'image', 'pdf', 'verifyUrl']) {
-          if (typeof value.certificates[i]?.[k] === 'string' && value.certificates[i][k]) {
-            c[k] = value.certificates[i][k];
+      const validCustomCerts = value.certificates.filter(c => c && (hasValidImage(c.image) || c.pdf || (c.title && !c.title.includes('Slot'))));
+      if (validCustomCerts.length > 0) {
+        result.certificates = result.certificates.map((c, i) => {
+          if (!validCustomCerts[i]) return c;
+          for (const k of ['title', 'issuer', 'date', 'category', 'image', 'pdf', 'verifyUrl']) {
+            if (typeof validCustomCerts[i][k] === 'string' && validCustomCerts[i][k]) {
+              c[k] = validCustomCerts[i][k];
+            }
           }
-        }
-        return c;
-      });
+          return c;
+        });
+      }
     }
+    result.certificates = result.certificates.filter(c => hasValidImage(c.image) || c.pdf || (c.title && !c.title.includes('Slot')));
     return result;
   }
 
@@ -229,32 +198,46 @@
     return Boolean(src && (src.startsWith('data:image') || src.startsWith('assets/') || src.startsWith('http')));
   }
 
+  function updateCarouselNav() {
+    const track = $('certs-grid');
+    if (!track) return;
+    const certCounter = $('cert-counter');
+    // Only count real cards (not clones)
+    const cards = track.querySelectorAll('.cert-card:not(.cert-clone)');
+
+    if (certCounter) {
+      certCounter.textContent = cards.length > 0 ? `${cards.length} certs` : '\u2014';
+    }
+  }
+
   function renderCertificates() {
     const grid = $('certs-grid');
     if (!grid) return;
     grid.innerHTML = '';
 
     data.certificates.forEach((cert, index) => {
+      if (!hasValidImage(cert.image) && !cert.pdf) return;
       if (activeCertFilter !== 'all' && cert.category !== activeCertFilter) return;
 
       const article = document.createElement('article');
       article.className = 'studio-card cert-card';
       article.setAttribute('tabindex', '0');
       article.setAttribute('role', 'button');
-      article.setAttribute('aria-label', 'View or upload certificate: ' + cert.title);
+      article.setAttribute('aria-label', 'View certificate: ' + cert.title);
+      article.dataset.certIdx = index;
 
       const hasImg = hasValidImage(cert.image);
       const previewHtml = hasImg
-        ? `<img src="${cert.image}" alt="${cert.title}">`
+        ? `<img src="${cert.image}" alt="${cert.title}" loading="lazy">`
         : `<div class="cert-placeholder">
-             <div class="cert-seal">✦</div>
-             <span style="font:600 11.5px var(--font-mono);color:#fdba74">CERTIFICATE SLOT 0${index + 1}</span>
-             <small style="color:rgba(255,255,255,0.68);font-size:11px">Click to preview or upload certificate image</small>
+             <div class="cert-seal">\u2726</div>
+             <span style="font:600 11.5px var(--font-mono);color:#fdba74">VERIFIED CREDENTIAL</span>
+             <small style="color:rgba(255,255,255,0.68);font-size:11px">${cert.issuer}</small>
            </div>`;
 
       article.innerHTML = `
         <div class="cert-preview">
-          <span class="cert-slot-badge">${hasImg ? 'VERIFIED CREDENTIAL' : 'OPEN SLOT'}</span>
+          <span class="cert-slot-badge">VERIFIED CREDENTIAL</span>
           ${previewHtml}
         </div>
         <div class="cert-body">
@@ -265,13 +248,13 @@
           </div>
           <div class="cert-footer">
             <span class="cert-date"></span>
-            <span class="cert-action">${hasImg ? 'View Certificate ↗' : '+ Upload Photo ↗'}</span>
+            <span class="cert-action">View Certificate \u2197</span>
           </div>
         </div>
       `;
       article.querySelector('h3').textContent = cert.title;
       article.querySelector('.cert-issuer').textContent = cert.issuer;
-      article.querySelector('.cert-date').textContent = 'ISSUED · ' + cert.date;
+      article.querySelector('.cert-date').textContent = 'ISSUED \u00B7 ' + cert.date;
 
       article.addEventListener('click', () => openCertViewer(index));
       article.addEventListener('keydown', e => {
@@ -282,13 +265,17 @@
       });
       grid.appendChild(article);
     });
+
+    updateCarouselNav();
+    // Init the infinite belt after cards are rendered
+    setTimeout(initCertBelt, 60);
   }
 
   function openCertViewer(index) {
     activeCertIndex = index;
     const cert = data.certificates[index];
     $('cert-viewer-title').textContent = cert.title;
-    $('cert-viewer-sub').textContent = `${cert.issuer} · ${cert.date}`;
+    $('cert-viewer-sub').textContent = `${cert.issuer} \u00B7 ${cert.date}`;
     const stage = $('cert-viewer-stage');
     if (hasValidImage(cert.image)) {
       stage.innerHTML = `<img src="${cert.image}" alt="${cert.title}">`;
@@ -298,7 +285,7 @@
           <div class="cert-seal">0${index + 1}</div>
           <strong style="font-family:var(--font-display);font-size:18px">${cert.title}</strong>
           <span style="color:rgba(255,255,255,0.75);font-size:13px">${cert.issuer}</span>
-          <small style="color:#fdba74;font-family:var(--font-mono)">No certificate image attached yet — upload below</small>
+          <small style="color:#fdba74;font-family:var(--font-mono)">No certificate image attached yet \u2014 upload below</small>
         </div>
       `;
     }
@@ -338,14 +325,205 @@
     reader.readAsDataURL(file);
   });
 
+  // ── Infinite Moving Carousel Engine ──────────────────────────────
+  // Strategy: clone all rendered cards and append them so the belt
+  // is exactly 2\u00D7 wide. A rAF loop moves translateX continuously.
+  // Buttons nudge the offset. Hovering pauses the animation.
+
+  let beltOffset   = 0;
+  let beltSpeed    = 0.09;     // Extra slow, comfortable ambient drift (~5px/s at 60fps)
+  let isHovered    = false;
+  let beltRafId    = null;
+  let beltHalfW    = 0;        // half the track scrollWidth (the clone boundary)
+  const CARD_STEP  = 344;      // card width (320) + gap (24)
+
+  function initCertBelt() {
+    const track = $('certs-grid');
+    if (!track) return;
+
+    // Remove any old clones
+    track.querySelectorAll('.cert-clone').forEach(el => el.remove());
+
+    const realCards = Array.from(track.querySelectorAll('.cert-card'));
+    if (realCards.length === 0) return;
+
+    // Clone all real cards
+    realCards.forEach(card => {
+      const clone = card.cloneNode(true);
+      clone.classList.add('cert-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      const idx = parseInt(card.dataset.certIdx || 0);
+      clone.addEventListener('click', () => openCertViewer(idx));
+      track.appendChild(clone);
+    });
+
+    // Measure the half-width boundary (one full set of original cards + gaps)
+    beltHalfW = track.scrollWidth / 2;
+    beltOffset = 0;
+    track.style.transform = 'translateX(0px)';
+
+    // Kick off rAF loop
+    if (beltRafId) cancelAnimationFrame(beltRafId);
+    beltRafId = requestAnimationFrame(beltTick);
+
+    updateCarouselNav();
+  }
+
+  function isCarouselHovered() {
+    const track = $('certs-grid');
+    const windowEl = document.querySelector('.certs-carousel-window');
+    const shellEl = $('cert-carousel-shell');
+    try {
+      if (track && track.matches(':hover')) return true;
+      if (windowEl && windowEl.matches(':hover')) return true;
+      if (shellEl && shellEl.matches(':hover')) return true;
+    } catch (e) {}
+    return isHovered;
+  }
+
+  function beltTick() {
+    const track = $('certs-grid');
+    if (!track) return;
+    const viewer = $('cert-viewer');
+    const isModalOpen = Boolean(viewer && viewer.open);
+
+    // Stop completely when cursor hovers on the certificate or modal is open
+    if (!isCarouselHovered() && !isModalOpen) {
+      beltOffset += beltSpeed;
+      // Seamless loop: when we've scrolled one full set, reset to 0
+      if (beltOffset >= beltHalfW) beltOffset -= beltHalfW;
+    }
+    track.style.transform = `translateX(${-beltOffset}px)`;
+    beltRafId = requestAnimationFrame(beltTick);
+  }
+
+  function slideNextCert() {
+    if (beltHalfW > 0) {
+      beltOffset = (beltOffset + CARD_STEP) % beltHalfW;
+    }
+  }
+  function slidePrevCert() {
+    if (beltHalfW > 0) {
+      beltOffset = (beltOffset - CARD_STEP + beltHalfW) % beltHalfW;
+    }
+  }
+
+  // Hover and touch listeners to immediately pause on cursor hover
+  const shellEl2 = $('cert-carousel-shell');
+  const windowEl2 = document.querySelector('.certs-carousel-window');
+  const trackEl2 = $('certs-grid');
+
+  [shellEl2, windowEl2, trackEl2].forEach(el => {
+    if (!el) return;
+    el.addEventListener('mouseenter', () => { isHovered = true; });
+    el.addEventListener('mouseleave', () => { isHovered = false; });
+    el.addEventListener('pointerenter', () => { isHovered = true; });
+    el.addEventListener('pointerleave', () => { isHovered = false; });
+    el.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
+    el.addEventListener('touchend', () => {
+      setTimeout(() => { isHovered = false; }, 2000);
+    }, { passive: true });
+  });
+
+  // Manual nav side chevrons
+  $('cert-side-prev')?.addEventListener('click', slidePrevCert);
+  $('cert-side-next')?.addEventListener('click', slideNextCert);
+
+  // Filter Buttons
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeCertFilter = btn.dataset.filter;
+      isHovered = false;
       renderCertificates();
+      setTimeout(initCertBelt, 60);
     });
   });
+
+  // ── Projects 3D Coverflow Carousel Engine ────────────────────────
+  let activeProjIndex = 0;
+
+  function updateProjectsCoverflow(newIndex) {
+    const projCards = document.querySelectorAll('.project-showcase-card');
+    const projDots = document.querySelectorAll('.proj-dot');
+    const totalProjects = projCards.length;
+    if (totalProjects === 0) return;
+
+    activeProjIndex = (newIndex + totalProjects) % totalProjects;
+
+    projCards.forEach((card, idx) => {
+      card.classList.remove('is-active', 'is-prev', 'is-next', 'is-hidden');
+      if (idx === activeProjIndex) {
+        card.classList.add('is-active');
+        card.setAttribute('aria-hidden', 'false');
+      } else if (idx === (activeProjIndex - 1 + totalProjects) % totalProjects) {
+        card.classList.add('is-prev');
+        card.setAttribute('aria-hidden', 'true');
+      } else if (idx === (activeProjIndex + 1) % totalProjects) {
+        card.classList.add('is-next');
+        card.setAttribute('aria-hidden', 'true');
+      } else {
+        card.classList.add('is-hidden');
+        card.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    projDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === activeProjIndex);
+      dot.setAttribute('aria-selected', String(idx === activeProjIndex));
+    });
+  }
+
+  function initProjectsCoverflow() {
+    const projCards = document.querySelectorAll('.project-showcase-card');
+    const projDots = document.querySelectorAll('.proj-dot');
+
+    projCards.forEach((card, idx) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (card.classList.contains('is-prev')) {
+          updateProjectsCoverflow(activeProjIndex - 1);
+        } else if (card.classList.contains('is-next')) {
+          updateProjectsCoverflow(activeProjIndex + 1);
+        }
+      });
+    });
+
+    $('proj-prev')?.addEventListener('click', () => updateProjectsCoverflow(activeProjIndex - 1));
+    $('proj-next')?.addEventListener('click', () => updateProjectsCoverflow(activeProjIndex + 1));
+
+    projDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetIdx = parseInt(dot.dataset.slide, 10);
+        updateProjectsCoverflow(targetIdx);
+      });
+    });
+
+    // Touch swipe support
+    const stageEl = $('projects-stage');
+    if (stageEl) {
+      let touchStartX = 0;
+      stageEl.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      stageEl.addEventListener('touchend', (e) => {
+        const diffX = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diffX) > 40) {
+          if (diffX > 0) {
+            updateProjectsCoverflow(activeProjIndex - 1);
+          } else {
+            updateProjectsCoverflow(activeProjIndex + 1);
+          }
+        }
+      }, { passive: true });
+    }
+
+    updateProjectsCoverflow(0);
+  }
+
+  initProjectsCoverflow();
 
   function render() {
     if ($('role-label')) $('role-label').textContent = data.role;
@@ -353,7 +531,7 @@
     if ($('about-copy')) $('about-copy').textContent = data.about;
     if ($('nav-name')) $('nav-name').textContent = data.name;
     if ($('footer-name')) $('footer-name').textContent = data.name + '.';
-    document.title = data.name + ' — ' + data.role;
+    document.title = data.name + ' \u2014 ' + data.role;
 
     const parts = data.name.trim().split(/\s+/);
     if ($('hero-first')) $('hero-first').textContent = parts.length > 1 ? parts.slice(0, -1).join(' ') : data.name;
@@ -416,13 +594,13 @@
       block.className = 'field full';
       block.style.cssText = 'padding:14px;border:1px solid var(--border-strong);border-radius:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px';
       block.innerHTML = `
-        <label class="field">Slot 0${i + 1} Title<input name="c${i}title" maxlength="100"></label>
+        <label class="field">Certificate ${i + 1} Title<input name="c${i}title" maxlength="100"></label>
         <label class="field">Issuer / Organization<input name="c${i}issuer" maxlength="100"></label>
         <label class="field">Year / Date<input name="c${i}date" maxlength="40"></label>
         <label class="field">Category
           <select name="c${i}category">
             <option value="ai">Google AI &amp; Prompting</option>
-            <option value="technical">Web &amp; C Programming</option>
+            <option value="technical">Web, Data &amp; Security</option>
           </select>
         </label>
         <label class="field full">Upload Certificate Photo (optional)<input type="file" accept="image/*" data-cert-upload="${i}"></label>
@@ -438,7 +616,7 @@
         const reader = new FileReader();
         reader.onload = () => {
           data.certificates[idx].image = String(reader.result);
-          notify(`Slot 0${idx + 1} image attached.`);
+          notify(`Certificate ${idx + 1} image attached.`);
         };
         reader.readAsDataURL(file);
       });
@@ -508,7 +686,7 @@
   form?.addEventListener('submit', e => { e.preventDefault(); if (save()) dialog.close(); });
 
   $('reset')?.addEventListener('click', () => {
-    if (!confirm('Reset portfolio and certificate slots to defaults?')) return;
+    if (!confirm('Reset portfolio and certificates to defaults?')) return;
     data = copy(defaults);
     try { localStorage.removeItem(storageKey); } catch (e) {}
     populate();
@@ -523,10 +701,10 @@
     const isSlate = html.getAttribute('data-theme') === 'slate';
     if (isSlate) {
       html.removeAttribute('data-theme');
-      themeBtn.textContent = '◐ Slate Mode';
+      themeBtn.textContent = '\u25D0 Slate Mode';
     } else {
       html.setAttribute('data-theme', 'slate');
-      themeBtn.textContent = '☀ Editorial Light';
+      themeBtn.textContent = '\u2600 Editorial Light';
     }
   });
 
@@ -605,7 +783,7 @@
     });
   }
 
-  const revealItems = document.querySelectorAll('.hero-shell, .metrics-strip, .section-head, .service-card, .project-card, .skill-row, .edu-card, .contact-box');
+  const revealItems = document.querySelectorAll('.hero-shell, .metrics-strip, .section-head, .service-card, .project-card, .bento-card, .skill-row, .edu-card, .contact-box');
   revealItems.forEach((el, i) => {
     el.classList.add('motion-reveal');
     el.style.setProperty('--reveal-delay', `${(i % 4) * 65}ms`);
@@ -620,7 +798,7 @@
   root.classList.add('motion-ready');
   revealItems.forEach(el => observer.observe(el));
 
-  const sections = [...document.querySelectorAll('#services, #work, #skills, #certificates, #about, #contact')];
+  const sections = [...document.querySelectorAll('#services, #skills, #work, #certificates, #about, #contact')];
   const navLinks = [...document.querySelectorAll('#navigation a')];
 
   function onScroll() {
@@ -691,7 +869,7 @@
     motionToggle?.addEventListener('click', () => {
       motionEnabled = !motionEnabled;
       motionToggle.setAttribute('aria-pressed', String(motionEnabled));
-      motionToggle.textContent = motionEnabled ? '⚡ Motion: ON' : '⚡ Motion: OFF';
+      motionToggle.textContent = motionEnabled ? '\u26A1 Motion: ON' : '\u26A1 Motion: OFF';
       root.classList.toggle('motion-ready', motionEnabled);
       if (!motionEnabled) {
         ctx.clearRect(0, 0, width, height);
