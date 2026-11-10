@@ -888,6 +888,10 @@ h2 {
   background: radial-gradient(circle at 70% 30%, #3e2213 0%, #15111b 100%);
 }
 
+.visual-food {
+  background: radial-gradient(circle at 70% 30%, #4a2806 0%, #171115 100%);
+}
+
 .visual-commerce {
   background: radial-gradient(circle at 50% 30%, #251c3d 0%, #0f1018 100%);
   padding: 18px 24px;

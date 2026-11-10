@@ -30,6 +30,12 @@
         url: 'https://djakshkasj.github.io/unclebrew-website/'
       },
       {
+        title: 'Big Daddy\'s Cup | Cheesy Silog & Orders Portal',
+        description: 'Interactive fast-casual restaurant web app featuring dynamic menu filtering, custom cup builder configurator, branch locator, franchise ROI calculator, and an authenticated customer portal with simulated real-time order tracking.',
+        tag: 'Web Development \u00B7 Brand UI \u00B7 Food E-Commerce \u00B7 Order Tracking',
+        url: 'https://djakshkasj.github.io/bigdaddycup_website/'
+      },
+      {
         title: 'E-Commerce, Franchising & Inventory',
         description: 'Experience in online selling and digital product sales, paired with hands-on experience in franchising and inventory management.',
         tag: 'E-Commerce \u00B7 Digital Sales \u00B7 Franchising \u00B7 Inventory',
@@ -139,7 +145,7 @@
     ]
   };
 
-  const storageKey = 'andrew-editorial-portfolio-v10';
+  const storageKey = 'andrew-editorial-portfolio-v11';
   const copy = v => JSON.parse(JSON.stringify(v));
 
   function normalize(value) {
@@ -547,7 +553,7 @@
         if (url) {
           link.href = url;
           link.hidden = false;
-        } else if (i === 2) {
+        } else if (!p.url || i === 3) {
           link.href = '#contact';
           link.hidden = false;
         } else {
