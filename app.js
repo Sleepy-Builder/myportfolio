@@ -14,7 +14,7 @@
     email: 'andrewgpalaran@gmail.com',
     phone: '+63 905 736 1525',
     facebook: 'https://www.facebook.com/andrew.palaran.5',
-    github: 'https://github.com/djakshkasj',
+    github: 'https://github.com/Sleepy-Builder',
     linkedin: 'https://www.linkedin.com/in/andrew-palaran-30b18844a',
     projects: [
       {
@@ -24,16 +24,28 @@
         url: 'https://waterwatch.tortor.org'
       },
       {
+        title: 'Apex Horizon Motors | Virtual Showroom & Concierge',
+        description: 'Modern automotive dealership platform built with Vue 3 and Tailwind CSS featuring authentic vehicle inventories, verified VINs, live finance calculation, side-by-side vehicle comparisons, and an AI virtual concierge.',
+        tag: 'Vue 3 \u00B7 Tailwind CSS \u00B7 Automotive E-Commerce \u00B7 Interactive Concierge',
+        url: 'https://sleepy-builder.github.io/car_dealership/'
+      },
+      {
+        title: 'EaseStay | Luxury Hotel & Resort',
+        description: 'Modern luxury hotel and resort web application featuring room & suite bookings, interactive amenities showcases, fine dining galleries, and mobile-optimized guest hospitality UI.',
+        tag: 'Web Development \u00B7 Hospitality UI \u00B7 Booking System \u00B7 Responsive Design',
+        url: 'https://sleepy-builder.github.io/hotel/'
+      },
+      {
         title: 'Uncle Brew | Sample Coffee Shop Website',
         description: 'Created a sample coffee-shop website featuring an interactive drinks menu, branch listings, and franchising content.',
         tag: 'Web Development \u00B7 Brand UI \u00B7 Franchising',
-        url: 'https://djakshkasj.github.io/unclebrew-website/'
+        url: 'https://sleepy-builder.github.io/unclebrew-website/'
       },
       {
         title: 'Big Daddy\'s Cup | Cheesy Silog & Orders Portal',
         description: 'Interactive fast-casual restaurant web app featuring dynamic menu filtering, custom cup builder configurator, branch locator, franchise ROI calculator, and an authenticated customer portal with simulated real-time order tracking.',
         tag: 'Web Development \u00B7 Brand UI \u00B7 Food E-Commerce \u00B7 Order Tracking',
-        url: 'https://djakshkasj.github.io/bigdaddycup_website/'
+        url: 'https://sleepy-builder.github.io/bigdaddycup_website/'
       },
       {
         title: 'E-Commerce, Franchising & Inventory',
@@ -145,7 +157,7 @@
     ]
   };
 
-  const storageKey = 'andrew-editorial-portfolio-v11';
+  const storageKey = 'andrew-editorial-portfolio-v14';
   const copy = v => JSON.parse(JSON.stringify(v));
 
   function normalize(value) {
@@ -262,7 +274,7 @@
       article.querySelector('.cert-issuer').textContent = cert.issuer;
       article.querySelector('.cert-date').textContent = 'ISSUED \u00B7 ' + cert.date;
 
-      article.addEventListener('click', () => openCertViewer(index));
+      article.addEventListener('click', (e) => handleCertCardClick(index, e));
       article.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -331,17 +343,60 @@
     reader.readAsDataURL(file);
   });
 
-  // ── Infinite Moving Carousel Engine ──────────────────────────────
-  // Strategy: clone all rendered cards and append them so the belt
-  // is exactly 2\u00D7 wide. A rAF loop moves translateX continuously.
-  // Buttons nudge the offset. Hovering pauses the animation.
+  // ── Certificates Carousel Navigation Engine ──────────────────────
+  let currentPos     = 0;
+  let targetPos      = 0;
+  let beltSpeed      = 0.28;   // Smooth ambient drift (~16px/s)
+  let isHovered      = false;
+  let isPointerDown  = false;
+  let isDragging     = false;
+  let wasDragging    = false;
+  let startX         = 0;
+  let lastX          = 0;
+  let dragStartPos   = 0;
+  let velocity       = 0;
+  let beltRafId      = null;
+  let beltHalfW      = 0;
+  let resumeTimer    = null;
+  let certEventsInit = false;
 
-  let beltOffset   = 0;
-  let beltSpeed    = 0.09;     // Extra slow, comfortable ambient drift (~5px/s at 60fps)
-  let isHovered    = false;
-  let beltRafId    = null;
-  let beltHalfW    = 0;        // half the track scrollWidth (the clone boundary)
-  const CARD_STEP  = 344;      // card width (320) + gap (24)
+  function getCardStep() {
+    const track = $('certs-grid');
+    const firstCard = track?.querySelector('.cert-card');
+    if (firstCard) {
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || '24') || 24;
+      return firstCard.offsetWidth + gap;
+    }
+    return 344;
+  }
+
+  function handleCertCardClick(index, e) {
+    if (wasDragging) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      return;
+    }
+    openCertViewer(index);
+  }
+
+  function slideNextCert() {
+    const step = getCardStep();
+    targetPos += step;
+    isHovered = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { isHovered = false; }, 3500);
+  }
+
+  function slidePrevCert() {
+    const step = getCardStep();
+    targetPos -= step;
+    isHovered = true;
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => { isHovered = false; }, 3500);
+  }
 
   function initCertBelt() {
     const track = $('certs-grid');
@@ -353,27 +408,33 @@
     const realCards = Array.from(track.querySelectorAll('.cert-card'));
     if (realCards.length === 0) return;
 
-    // Clone all real cards
+    // Clone all real cards for infinite seamless wrap
     realCards.forEach(card => {
       const clone = card.cloneNode(true);
       clone.classList.add('cert-clone');
       clone.setAttribute('aria-hidden', 'true');
       clone.setAttribute('tabindex', '-1');
-      const idx = parseInt(card.dataset.certIdx || 0);
-      clone.addEventListener('click', () => openCertViewer(idx));
+      const idx = parseInt(card.dataset.certIdx || 0, 10);
+      clone.addEventListener('click', (e) => handleCertCardClick(idx, e));
       track.appendChild(clone);
     });
 
-    // Measure the half-width boundary (one full set of original cards + gaps)
-    beltHalfW = track.scrollWidth / 2;
-    beltOffset = 0;
-    track.style.transform = 'translateX(0px)';
+    const step = getCardStep();
+    beltHalfW = realCards.length * step;
+    if (beltHalfW <= 0) beltHalfW = track.scrollWidth / 2;
 
-    // Kick off rAF loop
+    currentPos = 0;
+    targetPos = 0;
+    track.style.transform = 'translate3d(0px, 0, 0)';
+
     if (beltRafId) cancelAnimationFrame(beltRafId);
     beltRafId = requestAnimationFrame(beltTick);
 
     updateCarouselNav();
+    if (!certEventsInit) {
+      setupCertInteraction();
+      certEventsInit = true;
+    }
   }
 
   function isCarouselHovered() {
@@ -381,9 +442,9 @@
     const windowEl = document.querySelector('.certs-carousel-window');
     const shellEl = $('cert-carousel-shell');
     try {
-      if (track && track.matches(':hover')) return true;
-      if (windowEl && windowEl.matches(':hover')) return true;
-      if (shellEl && shellEl.matches(':hover')) return true;
+      if (track?.matches(':hover')) return true;
+      if (windowEl?.matches(':hover')) return true;
+      if (shellEl?.matches(':hover')) return true;
     } catch (e) {}
     return isHovered;
   }
@@ -394,47 +455,137 @@
     const viewer = $('cert-viewer');
     const isModalOpen = Boolean(viewer && viewer.open);
 
-    // Stop completely when cursor hovers on the certificate or modal is open
-    if (!isCarouselHovered() && !isModalOpen) {
-      beltOffset += beltSpeed;
-      // Seamless loop: when we've scrolled one full set, reset to 0
-      if (beltOffset >= beltHalfW) beltOffset -= beltHalfW;
+    if (beltHalfW > 0) {
+      if (!isPointerDown) {
+        const diff = targetPos - currentPos;
+        if (Math.abs(diff) > 0.25) {
+          currentPos += diff * 0.14;
+        } else {
+          currentPos = targetPos;
+          if (!isCarouselHovered() && !isModalOpen) {
+            targetPos += beltSpeed;
+            currentPos = targetPos;
+          }
+        }
+
+        while (targetPos >= beltHalfW) {
+          targetPos -= beltHalfW;
+          currentPos -= beltHalfW;
+        }
+        while (targetPos < 0) {
+          targetPos += beltHalfW;
+          currentPos += beltHalfW;
+        }
+      }
+
+      const renderOffset = ((currentPos % beltHalfW) + beltHalfW) % beltHalfW;
+      track.style.transform = `translate3d(${-renderOffset}px, 0, 0)`;
     }
-    track.style.transform = `translateX(${-beltOffset}px)`;
+
     beltRafId = requestAnimationFrame(beltTick);
   }
 
-  function slideNextCert() {
-    if (beltHalfW > 0) {
-      beltOffset = (beltOffset + CARD_STEP) % beltHalfW;
-    }
+  // ── Drag, Touch Swipe, Wheel & Keyboard Navigation ───────────────
+  function setupCertInteraction() {
+    const track = $('certs-grid');
+    const shell = $('cert-carousel-shell');
+    const windowEl = document.querySelector('.certs-carousel-window');
+    if (!track || !shell) return;
+
+    const onPointerDown = (e) => {
+      if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+      isPointerDown = true;
+      isDragging = false;
+      startX = e.clientX;
+      lastX = e.clientX;
+      dragStartPos = currentPos;
+      velocity = 0;
+      track.classList.add('is-dragging');
+      try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    };
+
+    const onPointerMove = (e) => {
+      if (!isPointerDown) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 6) {
+        isDragging = true;
+      }
+      velocity = e.clientX - lastX;
+      lastX = e.clientX;
+      currentPos = dragStartPos - dx;
+      targetPos = currentPos;
+    };
+
+    const onPointerUp = (e) => {
+      if (!isPointerDown) return;
+      isPointerDown = false;
+      track.classList.remove('is-dragging');
+      try {
+        if (e?.pointerId && track.hasPointerCapture?.(e.pointerId)) {
+          track.releasePointerCapture(e.pointerId);
+        }
+      } catch (err) {}
+
+      if (isDragging) {
+        wasDragging = true;
+        setTimeout(() => { wasDragging = false; }, 120);
+        targetPos = currentPos - velocity * 9;
+      }
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { isHovered = false; }, 2500);
+    };
+
+    track.addEventListener('pointerdown', onPointerDown);
+    track.addEventListener('pointermove', onPointerMove);
+    track.addEventListener('pointerup', onPointerUp);
+    track.addEventListener('pointercancel', onPointerUp);
+
+    // Mouse wheel / trackpad horizontal scrolling
+    shell.addEventListener('wheel', (e) => {
+      const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+      if (isHorizontal || e.shiftKey) {
+        e.preventDefault();
+        const delta = isHorizontal ? e.deltaX : e.deltaY;
+        targetPos += delta * 1.1;
+        isHovered = true;
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { isHovered = false; }, 2000);
+      }
+    }, { passive: false });
+
+    // Hover listeners to pause drift on hover
+    [shell, windowEl, track].forEach(el => {
+      if (!el) return;
+      el.addEventListener('mouseenter', () => { isHovered = true; });
+      el.addEventListener('mouseleave', () => { isHovered = false; });
+      el.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
+      el.addEventListener('touchend', () => {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => { isHovered = false; }, 2500);
+      }, { passive: true });
+    });
+
+    // Keyboard arrow keys (ArrowLeft / ArrowRight)
+    window.addEventListener('keydown', (e) => {
+      if ($('cert-viewer')?.open) return;
+      const isFocused = document.activeElement === track || track.contains(document.activeElement);
+      if (isFocused || isCarouselHovered()) {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          slideNextCert();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          slidePrevCert();
+        }
+      }
+    });
+
+    // Manual navigation buttons (floating side chevrons & toolbar buttons)
+    $('cert-side-prev')?.addEventListener('click', slidePrevCert);
+    $('cert-side-next')?.addEventListener('click', slideNextCert);
+    $('cert-prev-btn')?.addEventListener('click', slidePrevCert);
+    $('cert-next-btn')?.addEventListener('click', slideNextCert);
   }
-  function slidePrevCert() {
-    if (beltHalfW > 0) {
-      beltOffset = (beltOffset - CARD_STEP + beltHalfW) % beltHalfW;
-    }
-  }
-
-  // Hover and touch listeners to immediately pause on cursor hover
-  const shellEl2 = $('cert-carousel-shell');
-  const windowEl2 = document.querySelector('.certs-carousel-window');
-  const trackEl2 = $('certs-grid');
-
-  [shellEl2, windowEl2, trackEl2].forEach(el => {
-    if (!el) return;
-    el.addEventListener('mouseenter', () => { isHovered = true; });
-    el.addEventListener('mouseleave', () => { isHovered = false; });
-    el.addEventListener('pointerenter', () => { isHovered = true; });
-    el.addEventListener('pointerleave', () => { isHovered = false; });
-    el.addEventListener('touchstart', () => { isHovered = true; }, { passive: true });
-    el.addEventListener('touchend', () => {
-      setTimeout(() => { isHovered = false; }, 2000);
-    }, { passive: true });
-  });
-
-  // Manual nav side chevrons
-  $('cert-side-prev')?.addEventListener('click', slidePrevCert);
-  $('cert-side-next')?.addEventListener('click', slideNextCert);
 
   // Filter Buttons
   document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -553,7 +704,7 @@
         if (url) {
           link.href = url;
           link.hidden = false;
-        } else if (!p.url || i === 3) {
+        } else if (!p.url) {
           link.href = '#contact';
           link.hidden = false;
         } else {
@@ -884,5 +1035,284 @@
     });
   }
 
+  // ── DrewBot AI Profile Bot Engine ─────────────────────────────────
+  function initDrewBot() {
+    const form = $('drewbot-chat-form');
+    const input = $('drewbot-input');
+    const windowEl = $('drewbot-chat-window');
+    const clearBtn = $('drewbot-clear-btn');
+    const closeBtn = $('drewbot-close-btn');
+    const popup = $('drewbot-chat-popup');
+    const trigger = $('drewbot-chat-trigger');
+    const heroTrigger = $('hero-drewbot-trigger');
+    const profileTrigger = $('drewbot-profile-trigger');
+    const chips = document.querySelectorAll('.drewbot-chip');
+    if (!form || !input || !windowEl) return;
+
+    let isTyping = false;
+
+    // Messenger Pop-up Toggle Logic
+    function openDrewBotChat() {
+      if (!popup) return;
+      popup.classList.remove('is-closed');
+      popup.setAttribute('aria-hidden', 'false');
+      trigger?.classList.add('is-active');
+      setTimeout(() => {
+        input?.focus();
+        windowEl.scrollTop = windowEl.scrollHeight;
+      }, 180);
+    }
+
+    function closeDrewBotChat() {
+      if (!popup) return;
+      popup.classList.add('is-closed');
+      popup.setAttribute('aria-hidden', 'true');
+      trigger?.classList.remove('is-active');
+    }
+
+    function toggleDrewBotChat() {
+      if (!popup) return;
+      if (popup.classList.contains('is-closed')) {
+        openDrewBotChat();
+      } else {
+        closeDrewBotChat();
+      }
+    }
+
+    trigger?.addEventListener('click', toggleDrewBotChat);
+    closeBtn?.addEventListener('click', closeDrewBotChat);
+    heroTrigger?.addEventListener('click', (e) => { e.preventDefault(); openDrewBotChat(); });
+    profileTrigger?.addEventListener('click', (e) => { e.preventDefault(); openDrewBotChat(); });
+
+    // Close when pressing Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup && !popup.classList.contains('is-closed')) {
+        closeDrewBotChat();
+      }
+    });
+
+    // Knowledge Base responses generator
+    function getDrewBotAnswer(query) {
+      const q = query.toLowerCase().trim();
+
+      // WaterWatch & GIS
+      if (q.includes('waterwatch') || q.includes('gis') || q.includes('monitoring') || q.includes('water') || q.includes('forecasting') || q.includes('maasin')) {
+        return `<strong>WaterWatch &middot; Web-Based GIS Water Monitoring &amp; Forecasting</strong><br>
+        Andrew G. Palaran serves as the <strong>Project Manager</strong> for WaterWatch, leading the system planning, GIS mapping integration, and platform delivery.<br><br>
+        Key Highlights:
+        <ul>
+          <li><strong>Purpose:</strong> Ensuring clean, monitored, and safe water supply across households in Southern Leyte.</li>
+          <li><strong>Core Features:</strong> Interactive GIS mapping, real-time water quality and supply telemetry, and predictive forecasting models.</li>
+          <li><strong>Live Demo:</strong> <a href="https://waterwatch.tortor.org" target="_blank" rel="noopener noreferrer">waterwatch.tortor.org &#x2197;</a></li>
+        </ul>`;
+      }
+
+      // Recent Projects & Specific Projects
+      if (q.includes('apex') || q.includes('car') || q.includes('dealership') || q.includes('motors') || q.includes('vehicle')) {
+        return `<strong>Apex Horizon Motors &middot; Modern Virtual Car Dealership</strong><br>
+        A sophisticated automotive platform crafted by Andrew using <strong>Vue 3</strong> and <strong>Tailwind CSS</strong>.<br><br>
+        Key Features:
+        <ul>
+          <li>Curated real-world luxury &amp; sports car inventory with verified VINs.</li>
+          <li>Interactive loan/financing payment estimator &amp; amortization calculator.</li>
+          <li>Side-by-side vehicle comparison engine &amp; integrated 24/7 virtual concierge.</li>
+          <li><strong>Live Demo:</strong> <a href="https://sleepy-builder.github.io/car_dealership/" target="_blank" rel="noopener noreferrer">sleepy-builder.github.io/car_dealership &#x2197;</a></li>
+        </ul>`;
+      }
+
+      if (q.includes('easestay') || q.includes('hotel') || q.includes('resort') || q.includes('booking') || q.includes('room')) {
+        return `<strong>EaseStay &middot; Accessible Luxury Hotel &amp; Resort</strong><br>
+        A responsive hospitality platform designed and built by Andrew to deliver a five-star booking experience.<br><br>
+        Key Features:
+        <ul>
+          <li>Room &amp; oceanfront suite reservation portal with real-time rate calculations.</li>
+          <li>Interactive resort amenities showcase, wellness spa, and gourmet dining galleries.</li>
+          <li>Mobile-first architecture built for seamless guest discovery and reservation.</li>
+          <li><strong>Live Demo:</strong> <a href="https://sleepy-builder.github.io/hotel/" target="_blank" rel="noopener noreferrer">sleepy-builder.github.io/hotel &#x2197;</a></li>
+        </ul>`;
+      }
+
+      if (q.includes('uncle brew') || q.includes('coffee') || q.includes('cafe')) {
+        return `<strong>Uncle Brew PH &middot; Specialty Coffee &amp; Franchise Portal</strong><br>
+        A specialty coffee shop web application created by Andrew featuring:
+        <ul>
+          <li>Interactive drinks menu with dynamic categories and pricing.</li>
+          <li>Branch listings with geographic availability across the Philippines.</li>
+          <li>Prospective franchisee inquiry and digital onboarding funnel.</li>
+          <li><strong>Live Demo:</strong> <a href="https://sleepy-builder.github.io/unclebrew-website/" target="_blank" rel="noopener noreferrer">sleepy-builder.github.io/unclebrew-website &#x2197;</a></li>
+        </ul>`;
+      }
+
+      if (q.includes('big daddy') || q.includes('cup') || q.includes('food') || q.includes('restaurant') || q.includes('silog')) {
+        return `<strong>Big Daddy's Cup (BDC) &middot; Cheesy Silog &amp; Orders Portal</strong><br>
+        A high-energy fast-casual restaurant web app featuring:
+        <ul>
+          <li>Interactive custom comfort food cup builder configurator.</li>
+          <li>Live menu filtering and branch location finder.</li>
+          <li>Franchise ROI calculator and customer portal with simulated order tracking.</li>
+          <li><strong>Live Demo:</strong> <a href="https://sleepy-builder.github.io/bigdaddycup_website/" target="_blank" rel="noopener noreferrer">sleepy-builder.github.io/bigdaddycup_website &#x2197;</a></li>
+        </ul>`;
+      }
+
+      if (q.includes('project') || q.includes('work') || q.includes('built') || q.includes('portfolio') || q.includes('demo')) {
+        return `Andrew has delivered several live platforms and business systems:
+        <ul>
+          <li><strong>WaterWatch GIS:</strong> Web-based GIS water monitoring &amp; predictive forecasting (<a href="https://waterwatch.tortor.org" target="_blank" rel="noopener noreferrer">waterwatch.tortor.org &#x2197;</a>).</li>
+          <li><strong>Apex Horizon Motors:</strong> Modern Vue 3 &amp; Tailwind car dealership platform (<a href="https://sleepy-builder.github.io/car_dealership/" target="_blank" rel="noopener noreferrer">Live Demo &#x2197;</a>).</li>
+          <li><strong>EaseStay Resort:</strong> Luxury hotel booking and hospitality showcase (<a href="https://sleepy-builder.github.io/hotel/" target="_blank" rel="noopener noreferrer">Live Demo &#x2197;</a>).</li>
+          <li><strong>Uncle Brew:</strong> Coffee brand experience and franchising portal (<a href="https://sleepy-builder.github.io/unclebrew-website/" target="_blank" rel="noopener noreferrer">Live Demo &#x2197;</a>).</li>
+          <li><strong>Big Daddy's Cup:</strong> Food e-commerce with custom cup configurator (<a href="https://sleepy-builder.github.io/bigdaddycup_website/" target="_blank" rel="noopener noreferrer">Live Demo &#x2197;</a>).</li>
+          <li><strong>E-Commerce &amp; Inventory:</strong> Hands-on operational experience with digital goods sales and practical stock tracking.</li>
+        </ul>
+        You can explore the interactive 3D Coverflow carousel in the <strong>Recent Projects</strong> section above!`;
+      }
+
+      // Tech Stack & Skills
+      if (q.includes('skill') || q.includes('stack') || q.includes('language') || q.includes('tech') || q.includes('framework') || q.includes('program') || q.includes('vue') || q.includes('react') || q.includes('python') || q.includes('php') || q.includes('javascript') || q.includes('c++')) {
+        return `Andrew's technical toolkit spans modern full-stack development, GIS, and hardware integration:
+        <ul>
+          <li><strong>Frontend:</strong> Vue 3, React, Tailwind CSS, Bootstrap, JavaScript (ES6+), Modern CSS3 &amp; HTML5.</li>
+          <li><strong>Backend:</strong> Laravel, PHP, Node.js, Python, RESTful API architecture.</li>
+          <li><strong>Database &amp; Data:</strong> MySQL, SQL, Data Analytics Foundations (IBM certified).</li>
+          <li><strong>Specialized:</strong> GIS spatial mapping, Arduino platform &amp; C programming (UC Irvine certified), Network Security (Akamai certified).</li>
+          <li><strong>Leadership:</strong> Agile project management (University of Washington certified), stakeholder communications, franchising workflows.</li>
+        </ul>`;
+      }
+
+      // Education & SLSU & GWA
+      if (q.includes('education') || q.includes('study') || q.includes('school') || q.includes('university') || q.includes('slsu') || q.includes('college') || q.includes('gwa') || q.includes('grade') || q.includes('degree') || q.includes('bachelor') || q.includes('graduate')) {
+        return `<strong>Academic Background &middot; Southern Leyte State University (SLSU)</strong>
+        <ul>
+          <li><strong>Degree:</strong> Bachelor of Science in Information Technology (BSIT).</li>
+          <li><strong>Current Year:</strong> Fourth Year &middot; Expected Graduation in <strong>2027</strong>.</li>
+          <li><strong>Verified Standing:</strong> Outstanding General Weighted Average (GWA) of <strong>1.403</strong> (Honor / Dean's List standing).</li>
+          <li><strong>Campus / Location:</strong> Southern Leyte State University, Bontoc, Southern Leyte, Philippines.</li>
+        </ul>`;
+      }
+
+      // Certifications
+      if (q.includes('cert') || q.includes('course') || q.includes('credential') || q.includes('google ai') || q.includes('ibm') || q.includes('uci') || q.includes('akamai')) {
+        return `Andrew holds <strong>11 verified industry credentials</strong> from world-class institutions:
+        <ul>
+          <li><strong>Google AI Essentials:</strong> 5-Course Specialization (Prompting, Productivity with AI, Responsible AI, Staying Ahead of the AI Curve).</li>
+          <li><strong>IBM:</strong> Introduction to Web Development (HTML, CSS, JS) &amp; Data Analytics Foundations.</li>
+          <li><strong>University of California, Irvine (UC Irvine):</strong> The Arduino Platform and C Programming.</li>
+          <li><strong>Akamai:</strong> Network Security &amp; Edge Delivery.</li>
+          <li><strong>University of Washington:</strong> Web Project Management.</li>
+        </ul>
+        You can inspect every official certificate and verification link in the <strong>Certificates Vault</strong> carousel above!`;
+      }
+
+      // Contact & Hire
+      if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('phone') || q.includes('reach') || q.includes('social') || q.includes('github') || q.includes('linkedin') || q.includes('facebook') || q.includes('call') || q.includes('message')) {
+        return `Here is how you can get in touch with Andrew G. Palaran:
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:andrewgpalaran@gmail.com">andrewgpalaran@gmail.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+639057361525">+63 905 736 1525</a></li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/Sleepy-Builder" target="_blank" rel="noopener noreferrer">github.com/Sleepy-Builder &#x2197;</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/andrew-palaran-30b18844a" target="_blank" rel="noopener noreferrer">linkedin.com/in/andrew-palaran &#x2197;</a></li>
+          <li><strong>Facebook:</strong> <a href="https://www.facebook.com/andrew.palaran.5" target="_blank" rel="noopener noreferrer">facebook.com/andrew.palaran.5 &#x2197;</a></li>
+          <li><strong>Location:</strong> Bontoc, Southern Leyte (open to remote, hybrid, and on-site opportunities).</li>
+        </ul>`;
+      }
+
+      // Greetings / Casual
+      if (q.startsWith('hi') || q.startsWith('hello') || q.startsWith('hey') || q === 'sup' || q.includes('good morning') || q.includes('good afternoon')) {
+        return `Hello there! 🤖 Welcome to Andrew G. Palaran's portfolio. I'm <strong>DrewBot</strong>, his virtual AI representative. How can I assist you today? You can ask me about his WaterWatch GIS project, his latest web apps (Apex Motors, EaseStay), his skills, or his academic standing!`;
+      }
+
+      // Who is Andrew / Bio / Background
+      if (q.includes('who') || q.includes('about') || q.includes('bio') || q.includes('andrew') || q.includes('background') || q.includes('summary')) {
+        return `<strong>Andrew G. Palaran</strong> is a 4th-year BS Information Technology student at Southern Leyte State University (SLSU Class of '27) and the <strong>Project Manager for WaterWatch</strong>, a web-based GIS water monitoring and predictive forecasting initiative.<br><br>
+        He combines hands-on engineering in modern frontend frameworks (Vue 3, Tailwind) and full-stack systems with strong project delivery and commercial business operations experience (franchising, e-commerce, inventory systems).<br><br>
+        He maintains an exceptional <strong>1.403 GWA</strong> and holds 11 verified certifications in AI, web development, data analytics, and IoT.`;
+      }
+
+      // Default comprehensive response
+      return `Thanks for asking! Andrew G. Palaran is a <strong>Full-Stack Web Developer and Project Manager</strong> based in Southern Leyte, currently leading the <strong>WaterWatch GIS</strong> monitoring platform.<br><br>
+      Here are key areas you can ask me more about:
+      <ul>
+        <li>His leadership on <strong>WaterWatch GIS</strong> water monitoring.</li>
+        <li>His recent projects like <strong>Apex Horizon Motors</strong> (Vue 3) and <strong>EaseStay Resort</strong>.</li>
+        <li>His <strong>BSIT studies at SLSU</strong> (1.403 GWA).</li>
+        <li>His <strong>11 verified certifications</strong> from Google, IBM, UC Irvine, and UW.</li>
+        <li>How to get in touch via <a href="mailto:andrewgpalaran@gmail.com">andrewgpalaran@gmail.com</a>.</li>
+      </ul>`;
+    }
+
+    // Append a message to the chat window
+    function appendMessage(sender, htmlContent, isBot = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `drewbot-msg ${isBot ? 'bot-msg' : 'user-msg'}`;
+      msgDiv.innerHTML = `
+        <div class="drewbot-msg-avatar">${isBot ? '🤖' : 'You'}</div>
+        <div class="drewbot-msg-body">${htmlContent}</div>
+      `;
+      windowEl.appendChild(msgDiv);
+      windowEl.scrollTop = windowEl.scrollHeight;
+      return msgDiv;
+    }
+
+    // Streaming typing animation for bot replies
+    function streamBotReply(htmlAnswer) {
+      isTyping = true;
+      const indicator = document.createElement('div');
+      indicator.className = 'drewbot-msg bot-msg';
+      indicator.id = 'drewbot-indicator';
+      indicator.innerHTML = `
+        <div class="drewbot-msg-avatar">🤖</div>
+        <div class="drewbot-msg-body">
+          <div class="drewbot-typing-indicator">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      `;
+      windowEl.appendChild(indicator);
+      windowEl.scrollTop = windowEl.scrollHeight;
+
+      setTimeout(() => {
+        indicator.remove();
+        appendMessage('DrewBot', htmlAnswer, true);
+        isTyping = false;
+      }, 400);
+    }
+
+    // Send question handler
+    function handleSend(questionText) {
+      const cleanQ = questionText.trim();
+      if (!cleanQ || isTyping) return;
+
+      appendMessage('You', `<p>${cleanQ.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>`, false);
+      input.value = '';
+
+      const answer = getDrewBotAnswer(cleanQ);
+      streamBotReply(answer);
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleSend(input.value);
+    });
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const prompt = chip.dataset.prompt;
+        if (prompt) handleSend(prompt);
+      });
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      windowEl.innerHTML = `
+        <div class="drewbot-msg bot-msg">
+          <div class="drewbot-msg-avatar">🤖</div>
+          <div class="drewbot-msg-body">
+            <p>Chat cleared! I'm <strong>DrewBot</strong>, standing by in Andrew's profile. Ask me anything about his projects, technical skills, SLSU studies, or credentials! 🤖</p>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  initDrewBot();
   render();
 })();
