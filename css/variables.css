@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Design Tokens & Theme Variables (Warm Ivory & Soft Slate)
+   ========================================================================== */
+
+:root {
+  /* Default Theme: Warm Editorial Studio */
+  --bg: #f6f4ef;
+  --bg-alt: #ece9e1;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: #ffffff;
+  --surface-dark: #1b1c22;
+  --surface-dark-2: #24262f;
+  --text: #15161a;
+  --text-secondary: #525663;
+  --text-muted: #7c8190;
+  --text-on-dark: #f8fafc;
+  --accent: #ea580c;
+  --accent-light: #fb923c;
+  --accent-2: #4f46e5;
+  --accent-3: #0d9488;
+  --accent-glow: rgba(234, 88, 12, 0.22);
+  --border: rgba(21, 22, 26, 0.09);
+  --border-strong: rgba(21, 22, 26, 0.16);
+  --hero-aura: radial-gradient(circle at 50% 42%, rgba(251, 146, 60, 0.42) 0%, rgba(253, 224, 71, 0.24) 36%, rgba(199, 210, 254, 0.2) 64%, transparent 78%);
+  --shadow-sm: 0 8px 24px rgba(20, 22, 28, 0.05);
+  --shadow-lg: 0 24px 60px rgba(20, 22, 28, 0.09);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Soft Charcoal Studio Mode (Balanced Slate) */
+html[data-theme="slate"] {
+  --bg: #1c1e26;
+  --bg-alt: #16181f;
+  --surface: rgba(36, 39, 50, 0.88);
+  --surface-strong: #262936;
+  --surface-dark: #14161d;
+  --surface-dark-2: #1f222d;
+  --text: #f4f4f6;
+  --text-secondary: #b0b5c4;
+  --text-muted: #7e8496;
+  --text-on-dark: #ffffff;
+  --accent: #f97316;
+  --accent-light: #fdba74;
+  --accent-2: #818cf8;
+  --accent-3: #2dd4bf;
+  --accent-glow: rgba(249, 115, 22, 0.26);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --hero-aura: radial-gradient(circle at 50% 42%, rgba(234, 88, 12, 0.36) 0%, rgba(129, 140, 248, 0.22) 48%, transparent 76%);
+  --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 28px 68px rgba(0, 0, 0, 0.38);
+}

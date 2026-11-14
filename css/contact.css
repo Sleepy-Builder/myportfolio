@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Contact Banner
+   ========================================================================== */
+.contact-box {
+  padding: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  flex-wrap: wrap;
+}
+
+.contact-box h2 {
+  color: #ffffff;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding-top: 30px;
+}
+
+.contact-method {
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-method > span {
+  display: block;
+  font: 600 10px var(--font-mono);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 6px;
+}
+
+.contact-method a,
+.contact-method p {
+  margin: 0;
+  font: 600 13.5px var(--font-sans);
+  color: #ffffff;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.contact-method a:hover {
+  color: var(--accent-light);
+}
+
+/* Footer & Floating Controls */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px 0 88px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.footer .signature {
+  font: 700 16px var(--font-sans);
+  letter-spacing: -0.3px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.floating-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 22px;
+  z-index: 45;
+  display: flex;
+  gap: 10px;
+}
+
+.fab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: var(--surface-strong);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  font: 600 12px var(--font-mono);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;

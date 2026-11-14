@@ -1,0 +1,152 @@
+/* ==========================================================================
+   Section Layout & Watermark Headers (Like Ref 2 "01. Services")
+   ========================================================================== */
+section {
+  padding: 82px 0;
+  position: relative;
+}
+
+.section-head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+
+.watermark-title {
+  display: none;
+}
+
+.eyebrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 600 11.5px/1 var(--font-sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+h2 {
+  position: relative;
+  z-index: 1;
+  font: 700 clamp(26px, 3.2vw, 38px)/1.18 var(--font-display);
+  letter-spacing: -0.8px;
+  margin: 0;
+}
+
+.section-sub {
+  position: relative;
+  z-index: 1;
+  max-width: 410px;
+  font-size: 14.5px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Interactive Spotlight Card Base */
+.studio-card {
+  position: relative;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.studio-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    480px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(234, 88, 12, 0.08),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.studio-card:hover::before {
+  opacity: 1;
+}
+
+.studio-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ==========================================================================
+   What I Can Help You With — Service Cards (Like Ref 2 & Ref 3)
+   ========================================================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.service-card.featured-orange {
+  background: linear-gradient(145deg, #ea580c 0%, #c2410c 100%);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 20px 44px rgba(234, 88, 12, 0.28);
+}
+
+.service-card.featured-orange p,
+.service-card.featured-orange .service-num {
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.service-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(234, 88, 12, 0.12);
+  color: var(--accent);
+  font-size: 20px;
+}
+
+.service-card.featured-orange .service-icon {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.service-num {
+  font: 600 11.5px var(--font-mono);
+  color: var(--text-muted);
+}
+
+.service-card h3 {
+  font: 700 21px/1.25 var(--font-display);
+  margin: 8px 0 10px;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   Recent Projects & Experience Showcase
+   ========================================================================== */

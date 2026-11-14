@@ -1,0 +1,244 @@
+/* ==========================================================================
+   Project Showcase Card Visuals (Matching Reference)
+   ========================================================================== */
+
+/* Visual Top Frame */
+.project-visual-frame {
+  position: relative;
+  width: 100%;
+  height: 235px;
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[data-theme="slate"] .project-visual-frame,
+html[data-theme="dark"] .project-visual-frame {
+  background: #0f1118;
+}
+
+.project-visual-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-showcase-card.is-active:hover .project-visual-frame img {
+  transform: scale(1.02);
+}
+
+/* Background Gradients for Frames */
+.visual-gis {
+  background: radial-gradient(circle at 70% 30%, rgba(56, 189, 248, 0.16) 0%, #f0f9ff 100%);
+}
+.visual-auto {
+  background: radial-gradient(circle at 50% 30%, #e2e8f0 0%, #cbd5e1 100%);
+}
+.visual-hospitality {
+  background: radial-gradient(circle at 50% 30%, #ccfbf1 0%, #f0fdfa 100%);
+}
+.visual-cafe {
+  background: radial-gradient(circle at 50% 30%, #ffedd5 0%, #fff7ed 100%);
+}
+.visual-food {
+  background: radial-gradient(circle at 50% 30%, #fef3c7 0%, #fffbeb 100%);
+}
+.visual-commerce {
+  background: radial-gradient(circle at 50% 30%, #2a203f 0%, #151622 100%);
+  padding: 14px 18px;
+}
+
+/* Top Badge Overlay (Dark rounded pill matching reference) */
+.project-top-badge {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  z-index: 3;
+  padding: 5.5px 14px;
+  border-radius: 999px;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font: 700 10.5px/1 var(--font-sans);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* E-Commerce Interactive Mockup within Visual Frame */
+.commerce-mockup {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.commerce-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.commerce-stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.c-stat-label {
+  font: 600 8.5px var(--font-mono);
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.c-stat-val {
+  font: 800 13px var(--font-display);
+  color: #ffffff;
+  margin: 1px 0;
+}
+
+.c-stat-sub {
+  font: 500 8.5px var(--font-sans);
+  color: #38bdf8;
+}
+
+.gis-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 40px;
+  padding-top: 4px;
+}
+
+.gis-chart span {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(180deg, #ea580c, rgba(234, 88, 12, 0.3));
+}
+.gis-chart span:nth-child(1) { height: 45%; }
+.gis-chart span:nth-child(2) { height: 72%; }
+.gis-chart span:nth-child(3) { height: 58%; }
+.gis-chart span:nth-child(4) { height: 92%; }
+.gis-chart span:nth-child(5) { height: 78%; }
+.gis-chart span:nth-child(6) { height: 96%; }
+.gis-chart span:nth-child(7) { height: 66%; }
+
+/* Card Details (Below Preview) */
+.project-card-details {
+  padding: 20px 26px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: #ffffff;
+}
+
+html[data-theme="slate"] .project-card-details,
+html[data-theme="dark"] .project-card-details {
+  background: #14161f;
+}
+
+.project-card-details h3 {
+  font: 800 18px/1.25 var(--font-display);
+  margin: 0 0 5px;
+  color: #0f172a;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+}
+
+html[data-theme="slate"] .project-card-details h3,
+html[data-theme="dark"] .project-card-details h3 {
+  color: #ffffff;
+}
+
+.project-card-subtitle {
+  font: 600 13.5px/1.35 var(--font-sans);
+  color: #ea580c;
+  margin: 0 0 8px;
+  display: block;
+}
+
+.project-card-details .project-desc {
+  font-size: 13.5px;
+  color: #64748b;
+  line-height: 1.55;
+  margin: 0 0 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+html[data-theme="slate"] .project-card-details .project-desc,
+html[data-theme="dark"] .project-card-details .project-desc {
+  color: #94a3b8;
+}
+
+.project-card-details .tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.project-card-details .tag {
+  display: inline-flex;
+  align-items: center;
+  font: 500 11.5px/1 var(--font-mono);
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+html[data-theme="slate"] .project-card-details .tag,
+html[data-theme="dark"] .project-card-details .tag {
+  background: #1e2330;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+}
+
+.project-card-footer {
+  margin-top: auto;
+  padding-top: 2px;
+}
+
+/* Action Button: Solid Vibrant Orange Pill (Matching Reference) */
+.project-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font: 700 13.5px var(--font-sans);
+  padding: 11px 24px;
+  border-radius: 999px;
+  background-color: #ea580c;
+  color: #ffffff !important;
+  border: none;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.project-action-btn:hover {
+  background-color: #c2410c;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(234, 88, 12, 0.42);
+}
+
+.project-action-btn:active {
+  transform: translateY(0);
+}

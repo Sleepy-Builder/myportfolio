@@ -1,0 +1,43 @@
+/* ==========================================================================
+   Education & Profile Cards
+   ========================================================================== */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.edu-card {
+  padding: 36px;
+}
+
+.edu-timeline-item {
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--accent);
+  margin-top: 20px;
+}
+
+.edu-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.gwa-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(13, 148, 136, 0.12);
+  color: var(--accent-3);
+  font: 600 12px var(--font-mono);
+}
+

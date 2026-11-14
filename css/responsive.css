@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+@media (max-width: 1040px) {
+  .hero-stage {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 36px 28px 0;
+  }
+  .hero-left,
+  .hero-right {
+    align-items: center;
+    padding-bottom: 20px;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-pillars {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px 28px;
+  }
+  .pillar-item:nth-child(3) {
+    border-left: 0;
+    padding-left: 0;
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .edu-grid {
+    grid-column: span 12;
+    grid-template-columns: 1fr;
+  }
+  .bento-languages,
+  .bento-tools,
+  .bento-ai,
+  .bento-creative,
+  .bento-experience,
+  .bento-competencies {
+    grid-column: span 12;
+  }
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .contact-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .wrap {
+    width: calc(100% - 32px);
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    border-radius: 20px;
+    background: var(--surface-strong);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .hero-pillars,
+  .metrics-strip,
+  .services-grid,
+  .contact-methods,
+  .field-grid {
+    grid-template-columns: 1fr;
+  }
+  .metric-box::after {
+    display: none;
+  }
+  .pillar-item {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+  }
+  .pillar-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+  .chip-gwa { left: 4px; }
+  .chip-pm { right: 4px; }
+  .contact-box { padding: 32px 24px; }
+  .bento-card {
+    padding: 24px 18px;
+  }
+  .bento-icon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .skill-icon-card {
+    padding: 9px 10px;
+    gap: 9px;
+  }
+  .skill-icon-box {
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    font-size: 19px;
+  }
+}

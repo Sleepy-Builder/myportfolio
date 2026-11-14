@@ -1,0 +1,207 @@
+/* ==========================================================================
+   Icon-Driven Experience & Technical Skills Bento Grid (#skills)
+   ========================================================================== */
+.skills-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+}
+
+.bento-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 22px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.bento-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: radial-gradient(circle at 18% 0%, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.bento-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.bento-card:hover::before {
+  opacity: 0.85;
+}
+
+/* Card Column Spans */
+.bento-languages {
+  grid-column: span 7;
+}
+
+.bento-tools {
+  grid-column: span 5;
+}
+
+.bento-ai {
+  grid-column: span 12;
+}
+
+.bento-creative {
+  grid-column: span 4;
+}
+
+.bento-experience {
+  grid-column: span 4;
+}
+
+.bento-competencies {
+  grid-column: span 4;
+}
+
+.bento-card-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 18px;
+}
+
+.bento-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(234, 88, 12, 0.08);
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  font: 700 11px var(--font-mono);
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[data-theme="slate"] .bento-badge {
+  background: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.25);
+}
+
+.bento-num {
+  font-weight: 800;
+  opacity: 0.9;
+}
+
+.bento-title {
+  font: 700 21px/1.25 var(--font-display);
+  color: var(--text);
+  margin: 10px 0 5px;
+  letter-spacing: -0.01em;
+}
+
+.bento-desc {
+  font: 400 12.5px/1.5 var(--font-sans);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Default Icon Grid */
+.bento-icon-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Card 01: Languages & Frameworks (4 columns on desktop) */
+@media (min-width: 1024px) {
+  .bento-languages .bento-icon-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1023px) and (min-width: 600px) {
+  .bento-languages .bento-icon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Card 02: Databases & Dev Tools (2 columns on desktop) */
+@media (min-width: 600px) {
+  .bento-tools .bento-icon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Card 03: AI Models & Generative Tools (7 columns on desktop matching mockup) */
+@media (min-width: 1024px) {
+  .bento-ai .bento-icon-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1023px) and (min-width: 640px) {
+  .bento-ai .bento-icon-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 639px) and (min-width: 440px) {
+  .bento-ai .bento-icon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Cards 04, 05, 06: (2 columns each on desktop as shown in mockup) */
+@media (min-width: 600px) {
+  .bento-creative .bento-icon-grid,
+  .bento-experience .bento-icon-grid,
+  .bento-competencies .bento-icon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 439px) {
+  .bento-icon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Individual Skill Icon Card */
+.skill-icon-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s ease,
+              border-color 0.22s ease,
+              background-color 0.22s ease;
+  cursor: default;
+  user-select: none;
+  overflow: hidden;
+}
+
+.skill-icon-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px var(--accent-glow);
+  background: var(--surface-strong);
+}

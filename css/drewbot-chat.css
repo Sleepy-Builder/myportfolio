@@ -1,0 +1,271 @@
+/* Chat scroll area — White in Light Mode */
+.drewbot-chat-popup .drewbot-chat-window {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 14px 10px;
+  scroll-behavior: smooth;
+  background-color: #ffffff;
+}
+
+.drewbot-chat-popup .drewbot-chat-window::-webkit-scrollbar {
+  width: 5px;
+}
+
+.drewbot-chat-popup .drewbot-chat-window::-webkit-scrollbar-thumb {
+  background-color: #e2e8f0;
+  border-radius: 4px;
+}
+
+.drewbot-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 92%;
+  animation: drewbotMsgFade 0.25s ease-out;
+}
+
+@keyframes drewbotMsgFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.drewbot-msg.bot-msg {
+  align-self: flex-start;
+}
+
+.drewbot-msg.user-msg {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+/* Bot Message Avatar — Solid Sunset Orange */
+.drewbot-msg-avatar {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 8px;
+  background-color: #ea580c;
+  color: #ffffff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* User Message Avatar — Soft Slate */
+.drewbot-msg.user-msg .drewbot-msg-avatar {
+  background-color: #f1f5f9;
+  color: #ea580c;
+  font-weight: 700;
+  font-size: 11px;
+  border: 1px solid #cbd5e1;
+}
+
+.drewbot-msg-body {
+  padding: 11px 15px;
+  font-size: 13px;
+  border-radius: 14px;
+  line-height: 1.58;
+}
+
+/* Bot Message Bubble — Light Mode: Soft Off-White/Gray */
+.drewbot-msg.bot-msg .drewbot-msg-body {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  border-top-left-radius: 4px;
+}
+
+/* User Message Bubble — Solid Accent Orange (#ea580c) */
+.drewbot-msg.user-msg .drewbot-msg-body {
+  background-color: #ea580c;
+  color: #ffffff;
+  font-weight: 500;
+  border-top-right-radius: 4px;
+}
+
+.drewbot-msg-body p {
+  margin: 0 0 6px;
+}
+
+.drewbot-msg-body p:last-child {
+  margin-bottom: 0;
+}
+
+.drewbot-msg-body ul {
+  margin: 5px 0 6px 18px;
+  padding: 0;
+}
+
+.drewbot-msg-body li {
+  margin-bottom: 4px;
+}
+
+.drewbot-msg-body a {
+  color: #ea580c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+.drewbot-msg.bot-msg .drewbot-msg-body strong {
+  color: #0f172a;
+}
+
+.drewbot-msg.user-msg .drewbot-msg-body strong {
+  color: #ffffff;
+}
+
+/* Typing indicator */
+.drewbot-typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+}
+
+.drewbot-typing-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ea580c;
+  animation: drewbotBounce 1.2s infinite ease-in-out;
+}
+
+.drewbot-typing-indicator span:nth-child(2) { animation-delay: 0.2s; background-color: #fb923c; }
+.drewbot-typing-indicator span:nth-child(3) { animation-delay: 0.4s; background-color: #fdba74; }
+
+@keyframes drewbotBounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* Suggestion prompt chips — Light Mode */
+.drewbot-chat-popup .drewbot-prompts-tray {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 12px;
+  scrollbar-width: none;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.drewbot-chat-popup .drewbot-prompts-tray::-webkit-scrollbar {
+  display: none;
+}
+
+.drewbot-chat-popup .drewbot-chip {
+  flex: 0 0 auto;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font: 600 11.5px var(--font-mono);
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.drewbot-chat-popup .drewbot-chip:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Input Form — Light Mode */
+.drewbot-chat-popup .drewbot-input-form {
+  position: relative;
+  padding: 10px 12px 12px;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+.drewbot-chat-popup .drewbot-input-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 2px 4px 2px 12px;
+  transition: all 0.25s ease;
+}
+
+.drewbot-chat-popup .drewbot-input-shell:focus-within {
+  border-color: #ea580c;
+  box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.2);
+}
+
+.drewbot-chat-popup .drewbot-input-field {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #0f172a;
+  font: 400 13px var(--font-body);
+  padding: 8px 4px;
+}
+
+.drewbot-chat-popup .drewbot-input-field::placeholder {
+  color: #94a3b8;
+  font-size: 12.5px;
+}
+
+/* Send Button — Solid Sunset Orange */
+.drewbot-chat-popup .drewbot-send-btn {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 8px;
+  background-color: #ea580c;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drewbot-chat-popup .drewbot-send-btn:hover {
+  transform: scale(1.06);
+  background-color: #c2410c;
+}
+
+/* In-profile subtle pill button — Light Mode */
+.drewbot-profile-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  background-color: #ffffff;
+  border: 1.5px solid rgba(234, 88, 12, 0.45);
+  color: #ea580c;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font: 600 12.5px var(--font-body);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.drewbot-profile-chip-btn:hover {
+  background-color: #ea580c;
+  border-color: #ea580c;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(234, 88, 12, 0.25);
+}
+
+.drewbot-chip-sparkle {
+  font-size: 15px;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
